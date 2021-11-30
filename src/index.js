@@ -1,7 +1,8 @@
 import _ from "lodash";
 import "./style.css";
+import {displayTask} from './utils/utils.js';
 
-const items = [
+export const items = [
   {
     description: "Doctor appointment at 10AM",
     completed: false,
@@ -28,3 +29,5 @@ const items = [
     index: 4,
   },
 ];
+
+displayTask();
