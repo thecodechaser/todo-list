@@ -6,7 +6,7 @@
 
 ## Screenshots:
 
-![screenshot](./images/Screenshot1.png)
+![screenshot](./src/images/Screenshot1.png)
 
 Porject's features are added into seperate branch to keep main branch safe.
 

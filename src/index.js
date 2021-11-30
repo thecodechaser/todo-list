@@ -1,7 +1,6 @@
 import './style.css';
-import displayTask from './utils/utils.js';
 
-export const items = [
+const items = [
   {
     description: 'Doctor appointment at 10AM',
     completed: false,
@@ -28,5 +27,24 @@ export const items = [
     index: 4,
   },
 ];
+
+function displayTask() {
+  const container = document.querySelector('.list-container');
+  const list = document.createElement('ul');
+
+  for (let i = 0; i < items.length; i += 1) {
+    const item = items[i];
+    const listItem = document.createElement('li');
+    listItem.className = 'list-item';
+    listItem.innerHTML = `<div class="item-conatiner"><i class="far fa-square"></i><p>${item.description}</p></div><hr>`;
+    list.appendChild(listItem);
+  }
+
+  container.appendChild(list);
+  const clearElement = document.createElement('p');
+  clearElement.className = 'clear';
+  clearElement.innerText = 'Clear all completed';
+  container.appendChild(clearElement);
+}
 
 displayTask();
