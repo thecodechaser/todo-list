@@ -24,11 +24,20 @@ hr {
   margin: 0;
 }
 
+form {
+  display: flex;
+}
+
+.fa-level-down-alt {
+  font-size: 20px;
+  color: rgba(5, 5, 5, 0.507);
+}
+
 input {
   font-style: italic;
   padding: 10px;
   border: none;
-  width: 96%;
+  width: 90%;
 }
 
 .main-heading {
@@ -39,6 +48,7 @@ input {
 
 .fa-sync-alt {
   margin-top: 17px;
+  margin-right: 10px;
   color: rgba(5, 5, 5, 0.507);
 }
 

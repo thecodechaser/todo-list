@@ -1,10 +1,10 @@
 import { items } from '../index.js';
 
-export function displayTask() {
+export default function displayTask() {
   const container = document.querySelector('.list-container');
   const list = document.createElement('ul');
 
-  for (let i = 0; i < items.length; i++) {
+  for (let i = 0; i < items.length; ++i) {
     const item = items[i];
     const listItem = document.createElement('li');
     listItem.className = 'list-item';

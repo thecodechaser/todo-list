@@ -1,6 +1,5 @@
-import _ from 'lodash';
 import './style.css';
-import { displayTask } from './utils/utils.js';
+import displayTask from './utils/utils.js';
 
 export const items = [
   {
