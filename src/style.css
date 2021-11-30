@@ -1,0 +1,29 @@
+/* stylesheet */
+
+.main-container {
+  border: 1px solid red;
+ margin: 30px 20px 0 20px;
+ 
+}
+
+.list-head {
+  margin-left: 35px;
+}
+
+.main-heading {
+  font-weight: 100;
+  font-size: 20px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style-type: none;
+}
+
+@media screen and (min-width: 772px) {
+  .main-container {
+ margin: 30px 25vw 0 25vw;
+  }
+}
