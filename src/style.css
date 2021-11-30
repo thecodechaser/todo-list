@@ -8,7 +8,7 @@ body {
 .main-container {
   border: 3px solid #dfe1e6;
   margin: 30px 20px 0 20px;
- /* background-color: rgb(241, 237, 237); */
+  box-shadow: 5px 5px #dfe1e6;
 }
 
 .list-head {
@@ -28,7 +28,7 @@ input {
   font-style: italic;
   padding: 10px;
   border: none;
-  width: 100%;
+  width: 96%;
 }
 
 .main-heading {
@@ -66,10 +66,13 @@ ul {
   text-align: center;
   font-size: 18px;
   color: rgb(87, 80, 80);
+  background-color: #80808048;
+  margin-bottom: 0;
+  padding: 20px 0;
 }
 
 @media screen and (min-width: 772px) {
   .main-container {
- margin: 30px 30vw 0 30vw;
+    margin: 30px 30vw 0 30vw;
   }
 }
