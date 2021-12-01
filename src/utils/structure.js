@@ -34,7 +34,7 @@ export default function displayTask() {
     const item = items[i];
     const listItem = document.createElement('li');
     listItem.className = 'list-item';
-    listItem.innerHTML = `<div class="item-conatiner"><i class="far fa-square"></i><p>${item.description}</p></div><hr>`;
+    listItem.innerHTML = `<input class="list-input" type="checkbox"><p class="item-details">${item.description}</p>`;
     list.appendChild(listItem);
   }
 
