@@ -26,7 +26,7 @@ const items = [
   },
 ];
 
-export default function displayTask() {
+function displayTask() {
   const container = document.querySelector('.list-container');
   const list = document.createElement('ul');
 
@@ -43,4 +43,8 @@ export default function displayTask() {
   clearElement.className = 'clear';
   clearElement.innerText = 'Clear all completed';
   container.appendChild(clearElement);
+  const listInput = document.querySelectorAll(".list-input");
+  return listInput;
 }
+
+export { items, displayTask };

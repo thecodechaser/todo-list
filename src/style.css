@@ -38,6 +38,7 @@ form {
   padding: 10px;
   border: none;
   width: 90%;
+  outline: none;
 }
 
 .main-heading {
