@@ -43,7 +43,7 @@ function displayTask() {
   clearElement.className = 'clear';
   clearElement.innerText = 'Clear all completed';
   container.appendChild(clearElement);
-  const listInput = document.querySelectorAll(".list-input");
+  const listInput = document.querySelectorAll('.list-input');
   return listInput;
 }
 
