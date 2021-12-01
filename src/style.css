@@ -33,11 +33,12 @@ form {
   color: rgba(5, 5, 5, 0.507);
 }
 
-input {
+.form-input {
   font-style: italic;
   padding: 10px;
   border: none;
   width: 90%;
+  outline: none;
 }
 
 .main-heading {
@@ -54,16 +55,25 @@ input {
 
 ul {
   padding: 0;
+  gap: 10px;
   display: flex;
   flex-direction: column;
   list-style-type: none;
 }
 
-.item-conatiner {
+.list-item {
   display: flex;
   gap: 10px;
-  margin: 0 10px;
-  font-size: 15px;
+  padding-left: 0;
+}
+
+.list-input {
+  margin-top: 5px;
+  transform: scale(1.3);
+}
+
+.item-details {
+  margin-top: 0;
 }
 
 .fa-square {
