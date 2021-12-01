@@ -34,9 +34,7 @@ function populateStorage() {
       const parent = item.parentNode;
       const superParent = parent.parentNode;
       const index = Array.prototype.indexOf.call(superParent.children, parent);
-
       const currentItem = itemsLocal[index].completed;
-      console.log(index);
       if (currentItem) {
         item.setAttribute('checked', '');
       }
