@@ -19,7 +19,7 @@ Porject's features are added into seperate branch to keep main branch safe.
 
 ## Online live link
 
-[Visit project online](https://thecodechaser.github.io/todo-list/)
+[Visit project online](https://thecodechaser.github.io/todo-list/dist/)
 
 ## Getting Started
 
