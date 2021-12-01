@@ -27,7 +27,21 @@ function storeValues() {
 }
 
 function populateStorage() {
-  
+  window.addEventListener('load', () => {
+    const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
+    items.splice(0, items.length, ...itemsLocal);
+    listInput.forEach((item) => {
+      const parent = item.parentNode;
+      const superParent = parent.parentNode;
+      const index = Array.prototype.indexOf.call(superParent.children, parent);
+
+      const currentItem = itemsLocal[index].completed;
+      console.log(index);
+      if (currentItem) {
+        item.setAttribute('checked', '');
+      }
+    });
+  });
 }
 
 export { userInteraction, storeValues, populateStorage };
