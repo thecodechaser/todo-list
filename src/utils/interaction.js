@@ -8,7 +8,7 @@ const textDecoration = (listInput) => {
   });
 };
 
-const userInteraction = (listInput) => {
+export default function userInteraction(listInput) {
   const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
   listInput.forEach((item) => {
     item.addEventListener('change', () => {
@@ -29,6 +29,4 @@ const userInteraction = (listInput) => {
       localStorage.setItem('itemsLocal', JSON.stringify(itemsLocal));
     });
   });
-};
-
-export { userInteraction };
+}

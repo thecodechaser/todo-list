@@ -1,4 +1,4 @@
 import './style.css';
-import { populateStorage } from './utils/structure.js';
+import populateStorage from './utils/structure.js';
 
 populateStorage();

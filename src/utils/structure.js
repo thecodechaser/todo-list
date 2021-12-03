@@ -1,4 +1,6 @@
-import { userInteraction } from './interaction.js';
+/* eshint latedef:nofunc */
+
+import userInteraction from './interaction.js';
 
 const items = [];
 const form = document.querySelector('.form-element');
@@ -86,7 +88,7 @@ const textDecoration2 = (listInput) => {
   });
 };
 
-const populateStorage = () => {
+export default function populateStorage() {
   window.addEventListener('load', () => {
     render();
     const listInput = document.querySelectorAll('.list-input');
@@ -103,7 +105,7 @@ const populateStorage = () => {
     });
     textDecoration2(listInput);
   });
-};
+}
 
 const render = () => {
   const list = document.querySelector('.ul-list');
@@ -125,5 +127,3 @@ const render = () => {
 };
 
 displayTask();
-
-export { populateStorage };
