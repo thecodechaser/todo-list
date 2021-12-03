@@ -1,5 +1,4 @@
-/* eshint latedef:nofunc */
-
+/* eslint-disable no-use-before-define */
 import userInteraction from './interaction.js';
 
 const items = [];
