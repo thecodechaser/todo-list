@@ -1,25 +1,43 @@
-import { items, displayTask } from './structure.js';
+import { items, render } from './structure.js';
 
-const listInput = displayTask();
-
-function userInteraction() {
+function userInteraction(listInput) {
+  const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
   listInput.forEach((item) => {
     item.addEventListener('change', () => {
+      console.log(itemsLocal[0].completed);
       const parent = item.parentNode;
       const superParent = parent.parentNode;
       const index = Array.prototype.indexOf.call(superParent.children, parent);
-      const currentItem = items[index].completed;
+      const currentItem = itemsLocal[index].completed;
       if (currentItem) {
-        items[index].completed = false;
+        item.removeAttribute('checked');
+        parent.lastChild.style.display = 'none';
+        itemsLocal[index].completed = false;
       } else {
-        items[index].completed = true;
+        item.setAttribute('checked', '');
+        parent.lastChild.style.display = 'block';
+        itemsLocal[index].completed = true;
       }
+      textDecoration(listInput);
+      localStorage.setItem('itemsLocal', JSON.stringify(itemsLocal));
+      items.splice(0, items.length, ...itemsLocal);
     });
   });
 }
 
-function storeValues() {
+function textDecoration(listInput) {
   listInput.forEach((item) => {
+    if (item.hasAttribute('checked')) {
+      console.log('hello');
+      item.nextSibling.style.textDecoration = 'line-through';
+    } else {
+      item.nextSibling.style.textDecoration = 'none';
+    }
+  });
+}
+
+function storeValues() {
+  document.querySelectorAll('.list-input').forEach((item) => {
     item.addEventListener('change', () => {
       localStorage.setItem('itemsLocal', JSON.stringify(items));
     });
@@ -28,8 +46,9 @@ function storeValues() {
 
 function populateStorage() {
   window.addEventListener('load', () => {
+    render();
+    const listInput = document.querySelectorAll('.list-input');
     const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
-    items.splice(0, items.length, ...itemsLocal);
     listInput.forEach((item) => {
       const parent = item.parentNode;
       const superParent = parent.parentNode;
@@ -37,9 +56,11 @@ function populateStorage() {
       const currentItem = itemsLocal[index].completed;
       if (currentItem) {
         item.setAttribute('checked', '');
+        parent.lastChild.style.display = 'block';
       }
     });
+    textDecoration(listInput);
   });
 }
 
-export { userInteraction, storeValues, populateStorage };
+export { storeValues, populateStorage, userInteraction };

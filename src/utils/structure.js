@@ -1,50 +1,52 @@
-const items = [
-  {
-    description: 'Doctor appointment at 10AM',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'Visit friends home at 12PM',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Complete project for Microverse',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Take programming tutorials on udemy',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Dinner plan with family at hotel',
-    completed: false,
-    index: 4,
-  },
-];
+import { userInteraction } from './interaction.js';
 
+const items = [];
+const form = document.querySelector('.form-element');
 function displayTask() {
   const container = document.querySelector('.list-container');
-  const list = document.createElement('ul');
-
-  for (let i = 0; i < items.length; i += 1) {
-    const item = items[i];
-    const listItem = document.createElement('li');
-    listItem.className = 'list-item';
-    listItem.innerHTML = `<input class="list-input" type="checkbox"><p class="item-details">${item.description}</p>`;
-    list.appendChild(listItem);
-  }
-
-  container.appendChild(list);
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const data = form.elements[0].value;
+    const object = {
+      description: data,
+      completed: false,
+      index: items.length + 1,
+    };
+    form.reset();
+    items.push(object);
+    localStorage.setItem('itemsLocal', JSON.stringify(items));
+    render();
+  });
   const clearElement = document.createElement('p');
   clearElement.className = 'clear';
   clearElement.innerText = 'Clear all completed';
   container.appendChild(clearElement);
-  const listInput = document.querySelectorAll('.list-input');
-  return listInput;
+  const clear = document.querySelector('.clear');
+  const list = document.createElement('ul');
+  list.className = 'ul-list';
+  container.insertBefore(list, clear);
 }
 
-export { items, displayTask };
+function render() {
+  const list = document.querySelector('.ul-list');
+  const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
+  items.splice(0, items.length, ...itemsLocal);
+  list.innerHTML = '';
+  for (let i = 0; i < itemsLocal.length; i += 1) {
+    const { description } = itemsLocal[i];
+    const listItem = document.createElement('li');
+    listItem.className = 'list-item';
+    listItem.innerHTML = `<input class="list-input" type="checkbox"><textarea name="textarea cols="30" class="item-details">${description}</textarea><i class="fas fa-trash-alt"></i>`;
+    list.appendChild(listItem);
+  }
+  const listInput = document.querySelectorAll('.list-input');
+  userInteraction(listInput);
+  clearList();
+  removeItem();
+  updateValues();
+}
+
+
+displayTask();
+
+export { items, render };
