@@ -4,7 +4,6 @@ function userInteraction(listInput) {
   const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
   listInput.forEach((item) => {
     item.addEventListener('change', () => {
-      console.log(itemsLocal[0].completed);
       const parent = item.parentNode;
       const superParent = parent.parentNode;
       const index = Array.prototype.indexOf.call(superParent.children, parent);
@@ -28,7 +27,6 @@ function userInteraction(listInput) {
 function textDecoration(listInput) {
   listInput.forEach((item) => {
     if (item.hasAttribute('checked')) {
-      console.log('hello');
       item.nextSibling.style.textDecoration = 'line-through';
     } else {
       item.nextSibling.style.textDecoration = 'none';

@@ -47,29 +47,29 @@ function render() {
 }
 
 function removeItem() {
-  const button = document.querySelectorAll(".fa-trash-alt");
+  const button = document.querySelectorAll('.fa-trash-alt');
   button.forEach((item) => {
     const parent = item.parentNode;
     const superParent = parent.parentNode;
     const index = Array.prototype.indexOf.call(superParent.children, parent);
     const listInput = parent.firstChild;
-    item.addEventListener("click", () => {
-      if (listInput.hasAttribute("checked")) {
+    item.addEventListener('click', () => {
+      if (listInput.hasAttribute('checked')) {
         parent.remove();
         items.splice(index, 1);
       }
       for (let i = 0; i < items.length; i += 1) {
         items[i].index = i + 1;
       }
-      localStorage.setItem("itemsLocal", JSON.stringify(items));
+      localStorage.setItem('itemsLocal', JSON.stringify(items));
       render();
     });
   });
 }
 
 function clearList() {
-  const getClearElement = document.querySelector(".clear");
-  getClearElement.addEventListener("click", () => {
+  const getClearElement = document.querySelector('.clear');
+  getClearElement.addEventListener('click', () => {
     for (let i = 0; i < items.length; i += 1) {
       if (items[i].completed) {
         items.splice(i, 1);
@@ -78,20 +78,20 @@ function clearList() {
     for (let i = 0; i < items.length; i += 1) {
       items[i].index = i + 1;
     }
-    localStorage.setItem("itemsLocal", JSON.stringify(items));
+    localStorage.setItem('itemsLocal', JSON.stringify(items));
     render();
   });
 }
 
 function updateValues() {
-  const itemDetails = document.querySelectorAll(".item-details");
+  const itemDetails = document.querySelectorAll('.item-details');
   itemDetails.forEach((item) => {
     const parent = item.parentNode;
     const superParent = parent.parentNode;
     const index = Array.prototype.indexOf.call(superParent.children, parent);
-    item.addEventListener("change", () => {
+    item.addEventListener('change', () => {
       items[index].description = item.value;
-      localStorage.setItem("itemsLocal", JSON.stringify(items));
+      localStorage.setItem('itemsLocal', JSON.stringify(items));
     });
   });
 }
