@@ -46,6 +46,26 @@ function render() {
   updateValues();
 }
 
+function removeItem() {
+  const button = document.querySelectorAll(".fa-trash-alt");
+  button.forEach((item) => {
+    const parent = item.parentNode;
+    const superParent = parent.parentNode;
+    const index = Array.prototype.indexOf.call(superParent.children, parent);
+    const listInput = parent.firstChild;
+    item.addEventListener("click", () => {
+      if (listInput.hasAttribute("checked")) {
+        parent.remove();
+        items.splice(index, 1);
+      }
+      for (let i = 0; i < items.length; i += 1) {
+        items[i].index = i + 1;
+      }
+      localStorage.setItem("itemsLocal", JSON.stringify(items));
+      render();
+    });
+  });
+}
 
 displayTask();
 
