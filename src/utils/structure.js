@@ -83,6 +83,19 @@ function clearList() {
   });
 }
 
+function updateValues() {
+  const itemDetails = document.querySelectorAll(".item-details");
+  itemDetails.forEach((item) => {
+    const parent = item.parentNode;
+    const superParent = parent.parentNode;
+    const index = Array.prototype.indexOf.call(superParent.children, parent);
+    item.addEventListener("change", () => {
+      items[index].description = item.value;
+      localStorage.setItem("itemsLocal", JSON.stringify(items));
+    });
+  });
+}
+
 displayTask();
 
 export { items, render };
