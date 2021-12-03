@@ -67,6 +67,22 @@ function removeItem() {
   });
 }
 
+function clearList() {
+  const getClearElement = document.querySelector(".clear");
+  getClearElement.addEventListener("click", () => {
+    for (let i = 0; i < items.length; i += 1) {
+      if (items[i].completed) {
+        items.splice(i, 1);
+      }
+    }
+    for (let i = 0; i < items.length; i += 1) {
+      items[i].index = i + 1;
+    }
+    localStorage.setItem("itemsLocal", JSON.stringify(items));
+    render();
+  });
+}
+
 displayTask();
 
 export { items, render };
