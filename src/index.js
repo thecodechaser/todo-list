@@ -1,5 +1,4 @@
 import './style.css';
-import { storeValues, populateStorage } from './utils/interaction.js';
+import { populateStorage } from './utils/structure.js';
 
-storeValues();
 populateStorage();

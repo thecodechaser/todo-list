@@ -1,10 +1,8 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable no-use-before-define */
 import { userInteraction } from './interaction.js';
 
 const items = [];
 const form = document.querySelector('.form-element');
-function displayTask() {
+const displayTask = () => {
   const container = document.querySelector('.list-container');
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -27,28 +25,9 @@ function displayTask() {
   const list = document.createElement('ul');
   list.className = 'ul-list';
   container.insertBefore(list, clear);
-}
+};
 
-function render() {
-  const list = document.querySelector('.ul-list');
-  const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
-  items.splice(0, items.length, ...itemsLocal);
-  list.innerHTML = '';
-  for (let i = 0; i < itemsLocal.length; i += 1) {
-    const { description } = itemsLocal[i];
-    const listItem = document.createElement('li');
-    listItem.className = 'list-item';
-    listItem.innerHTML = `<input class="list-input" type="checkbox"><textarea name="textarea cols="30" class="item-details">${description}</textarea><i class="fas fa-trash-alt"></i>`;
-    list.appendChild(listItem);
-  }
-  const listInput = document.querySelectorAll('.list-input');
-  userInteraction(listInput);
-  clearList();
-  removeItem();
-  updateValues();
-}
-
-function removeItem() {
+const removeItem = () => {
   const button = document.querySelectorAll('.fa-trash-alt');
   button.forEach((item) => {
     const parent = item.parentNode;
@@ -66,9 +45,9 @@ function removeItem() {
       localStorage.setItem('itemsLocal', JSON.stringify(items));
     });
   });
-}
+};
 
-function clearList() {
+const clearList = () => {
   const getClearElement = document.querySelector('.clear');
   getClearElement.addEventListener('click', () => {
     for (let i = 0; i < items.length; i += 1) {
@@ -82,9 +61,9 @@ function clearList() {
     localStorage.setItem('itemsLocal', JSON.stringify(items));
     render();
   });
-}
+};
 
-function updateValues() {
+const updateValues = () => {
   const itemDetails = document.querySelectorAll('.item-details');
   itemDetails.forEach((item) => {
     const parent = item.parentNode;
@@ -95,8 +74,56 @@ function updateValues() {
       localStorage.setItem('itemsLocal', JSON.stringify(items));
     });
   });
-}
+};
+
+const textDecoration2 = (listInput) => {
+  listInput.forEach((item) => {
+    if (item.hasAttribute('checked')) {
+      item.nextSibling.style.textDecoration = 'line-through';
+    } else {
+      item.nextSibling.style.textDecoration = 'none';
+    }
+  });
+};
+
+const populateStorage = () => {
+  window.addEventListener('load', () => {
+    render();
+    const listInput = document.querySelectorAll('.list-input');
+    const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
+    listInput.forEach((item) => {
+      const parent = item.parentNode;
+      const superParent = parent.parentNode;
+      const index = Array.prototype.indexOf.call(superParent.children, parent);
+      const currentItem = itemsLocal[index].completed;
+      if (currentItem) {
+        item.setAttribute('checked', '');
+        parent.lastChild.style.display = 'block';
+      }
+    });
+    textDecoration2(listInput);
+  });
+};
+
+const render = () => {
+  const list = document.querySelector('.ul-list');
+  const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
+  items.splice(0, items.length, ...itemsLocal);
+  list.innerHTML = '';
+  for (let i = 0; i < itemsLocal.length; i += 1) {
+    const { description } = itemsLocal[i];
+    const listItem = document.createElement('li');
+    listItem.className = 'list-item';
+    listItem.innerHTML = `<input class="list-input" type="checkbox"><textarea name="textarea cols="30" class="item-details">${description}</textarea><i class="fas fa-trash-alt"></i>`;
+    list.appendChild(listItem);
+  }
+  const listInput = document.querySelectorAll('.list-input');
+  userInteraction(listInput);
+  clearList();
+  removeItem();
+  updateValues();
+};
 
 displayTask();
 
-export { items, render };
+export { populateStorage };
