@@ -1,6 +1,16 @@
 /* eslint-disable import/no-cycle */
 import { items, render } from './structure.js';
 
+function textDecoration(listInput) {
+  listInput.forEach((item) => {
+    if (item.hasAttribute('checked')) {
+      item.nextSibling.style.textDecoration = 'line-through';
+    } else {
+      item.nextSibling.style.textDecoration = 'none';
+    }
+  });
+}
+
 function userInteraction(listInput) {
   const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
   listInput.forEach((item) => {
@@ -49,16 +59,6 @@ function populateStorage() {
       }
     });
     textDecoration(listInput);
-  });
-}
-
-function textDecoration(listInput) {
-  listInput.forEach((item) => {
-    if (item.hasAttribute('checked')) {
-      item.nextSibling.style.textDecoration = 'line-through';
-    } else {
-      item.nextSibling.style.textDecoration = 'none';
-    }
   });
 }
 
