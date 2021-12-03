@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-use-before-define */
 import { userInteraction } from './interaction.js';
 
 const items = [];
@@ -62,7 +64,6 @@ function removeItem() {
         items[i].index = i + 1;
       }
       localStorage.setItem('itemsLocal', JSON.stringify(items));
-      render();
     });
   });
 }
