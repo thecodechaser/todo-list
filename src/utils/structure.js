@@ -1,6 +1,4 @@
 /* eslint-disable no-use-before-define */
-import userInteraction from './interaction.js';
-
 const items = [];
 const form = document.querySelector('.form-element');
 const displayTask = () => {
@@ -36,6 +34,8 @@ const removeItem = () => {
     const index = Array.prototype.indexOf.call(superParent.children, parent);
     const listInput = parent.firstChild;
     item.addEventListener('click', () => {
+      const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
+      items.splice(0, items.length, ...itemsLocal);
       if (listInput.hasAttribute('checked')) {
         parent.remove();
         items.splice(index, 1);
@@ -44,6 +44,7 @@ const removeItem = () => {
         items[i].index = i + 1;
       }
       localStorage.setItem('itemsLocal', JSON.stringify(items));
+      render();
     });
   });
 };
@@ -56,6 +57,7 @@ const clearList = () => {
         items.splice(i, 1);
       }
     }
+
     for (let i = 0; i < items.length; i += 1) {
       items[i].index = i + 1;
     }
@@ -77,7 +79,7 @@ const updateValues = () => {
   });
 };
 
-const textDecoration2 = (listInput) => {
+const textDecoration = (listInput) => {
   listInput.forEach((item) => {
     if (item.hasAttribute('checked')) {
       item.nextSibling.style.textDecoration = 'line-through';
@@ -102,7 +104,31 @@ export default function populateStorage() {
         parent.lastChild.style.display = 'block';
       }
     });
-    textDecoration2(listInput);
+    textDecoration(listInput);
+  });
+}
+
+function userInteraction(listInput) {
+  listInput.forEach((item) => {
+    item.addEventListener('change', () => {
+      const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
+      const parent = item.parentNode;
+      const superParent = parent.parentNode;
+      const index = Array.prototype.indexOf.call(superParent.children, parent);
+      const currentItem = itemsLocal[index].completed;
+      if (currentItem) {
+        item.removeAttribute('checked');
+        parent.lastChild.style.display = 'none';
+        itemsLocal[index].completed = false;
+      } else {
+        item.setAttribute('checked', '');
+        parent.lastChild.style.display = 'block';
+        itemsLocal[index].completed = true;
+      }
+      textDecoration(listInput);
+      localStorage.setItem('itemsLocal', JSON.stringify(itemsLocal));
+      items.splice(0, items.length, ...itemsLocal);
+    });
   });
 }
 
@@ -120,7 +146,7 @@ const render = () => {
   }
   const listInput = document.querySelectorAll('.list-input');
   userInteraction(listInput);
-  clearList();
+  clearList(listInput);
   removeItem();
   updateValues();
 };
