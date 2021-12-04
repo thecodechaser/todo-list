@@ -1,6 +1,4 @@
 import './style.css';
-import { userInteraction, storeValues, populateStorage } from './utils/interaction.js';
+import populateStorage from './utils/structure.js';
 
-userInteraction();
-storeValues();
 populateStorage();

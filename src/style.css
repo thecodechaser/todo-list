@@ -74,6 +74,16 @@ ul {
 
 .item-details {
   margin-top: 0;
+  width: 300px;
+  border: none;
+  resize: none;
+  outline: none;
+}
+
+.fa-trash-alt {
+  display: none;
+  margin-left: 150px;
+  color: rgba(73, 73, 73, 0.726);
 }
 
 .fa-square {
