@@ -108,7 +108,7 @@ export default function populateStorage() {
   });
 }
 
-function userInteraction(listInput) {
+const userInteraction=(listInput)=> {
   listInput.forEach((item) => {
     item.addEventListener('change', () => {
       const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
