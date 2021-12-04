@@ -108,7 +108,7 @@ export default function populateStorage() {
   });
 }
 
-const userInteraction=(listInput)=> {
+const userInteraction = (listInput) => {
   listInput.forEach((item) => {
     item.addEventListener('change', () => {
       const itemsLocal = JSON.parse(localStorage.getItem('itemsLocal'));
@@ -130,7 +130,7 @@ const userInteraction=(listInput)=> {
       items.splice(0, items.length, ...itemsLocal);
     });
   });
-}
+};
 
 const render = () => {
   const list = document.querySelector('.ul-list');
