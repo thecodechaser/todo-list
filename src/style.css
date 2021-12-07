@@ -93,12 +93,13 @@ ul {
 }
 
 .clear {
-  text-align: center;
   font-size: 18px;
+  border: none;
   color: rgb(87, 80, 80);
   background-color: #80808048;
-  margin-bottom: 0;
-  padding: 20px 0;
+  padding: 30px 0;
+  width: 100%;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 772px) {
