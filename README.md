@@ -2,7 +2,7 @@
 
 # To Do List
 
-> To Do List project is list of todo items, users can add and remove item from todo list.
+> To-Do List project is the application for a to-do list, users can add and remove tasks from the to-do list. Mark tasks as completed. Users can delete all completed tasks at once.
 
 ## Screenshots:
 
